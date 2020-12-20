@@ -12,7 +12,7 @@ import Kingfisher
 
 class DetailViewController: UIViewController {
     
-    var viewModel: DetailViewModel!
+    var viewModel: DetailViewModelProtocol!
     var router: RouterProtocol!
     
     let imageView = UIImageView()

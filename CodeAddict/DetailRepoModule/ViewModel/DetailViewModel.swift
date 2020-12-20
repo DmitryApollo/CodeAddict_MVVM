@@ -9,6 +9,12 @@
 import Foundation
 
 protocol DetailViewModelProtocol: class {
+    var networkService: NetworkServiceProtocol! { get set }
+    var repo: Repo? { get set }
+    var commits: [Commit] { get set }
+    var totalCount: Int? { get set }
+    init(networkService: NetworkServiceProtocol)
+    
     var commitsDidChanges: ((Bool, Error?) -> Void)? { get set }
     func getCommits(owner: String, repoTitle: String)
 }
@@ -16,7 +22,7 @@ protocol DetailViewModelProtocol: class {
 final class DetailViewModel: DetailViewModelProtocol {
     var commitsDidChanges: ((Bool, Error?) -> Void)?
     
-    let networkService: NetworkServiceProtocol!
+    var networkService: NetworkServiceProtocol!
     var repo: Repo?
     
     var commits: [Commit] = [] {

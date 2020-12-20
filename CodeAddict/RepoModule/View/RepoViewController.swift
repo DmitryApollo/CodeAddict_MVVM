@@ -12,15 +12,15 @@ import Kingfisher
 
 class RepoViewController: UIViewController {
 
-    var viewModel: RepoViewModel!
+    var viewModel: RepoViewModelProtocol!
     var router: RouterProtocol!
     
-    let searchController = UISearchController(searchResultsController: nil)
-    let tableView = UITableView()
+    private let searchController = UISearchController(searchResultsController: nil)
+    private let tableView = UITableView()
     private let activityIndicator = UIActivityIndicatorView(style: .medium)
     private var errorAlert: UIAlertController?
     private var isLoading: Bool = false
-    var page: Int = 0
+    private var page: Int = 0
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .darkContent

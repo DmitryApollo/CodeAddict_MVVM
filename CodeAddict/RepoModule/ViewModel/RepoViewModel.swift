@@ -9,6 +9,11 @@
 import Foundation
 
 protocol RepoViewModelProtocol: class {
+    var networkService: NetworkServiceProtocol! { get set }
+    var repos: [Repo] { get set }
+    var totalCount: Int? { get set }
+    
+    init(networkService: NetworkServiceProtocol)
     var reposDidChanges: ((Bool, Error?) -> Void)? { get set }
     func searchRepo(repoName: String, page: Int, perPage: Int)
 }
@@ -16,7 +21,7 @@ protocol RepoViewModelProtocol: class {
 final class RepoViewModel: RepoViewModelProtocol {
     var reposDidChanges: ((Bool, Error?) -> Void)?
     
-    let networkService: NetworkServiceProtocol!
+    var networkService: NetworkServiceProtocol!
     var repos: [Repo] = [] {
         didSet {
             self.reposDidChanges!(true, nil)
